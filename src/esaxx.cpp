@@ -617,7 +617,8 @@
 // 
 // #endif // _ESA_HXX
 
-#include <cstdint>
+//#include <cstdint>
+#include <stdint.h>
 #include "esa.hxx"
 
 extern "C"{
