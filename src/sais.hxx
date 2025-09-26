@@ -338,8 +338,9 @@ saisxx(string_type T, sarray_type SA, index_type n, index_type k = 256) {
   int err;
   if((n < 0) || (k <= 0)) { return -1; }
   if(n <= 1) { if(n == 1) { SA[0] = 0; } return 0; }
-  try { err = saisxx_private::suffixsort(T, SA, index_type(0), n, k, false); }
-  catch(...) { err = -2; }
+//   try { err = saisxx_private::suffixsort(T, SA, index_type(0), n, k, false); }
+//   catch(...) { err = -2; }
+  err = saisxx_private::suffixsort(T, SA, index_type(0), n, k, false);
   return err;
 }
 
@@ -359,15 +360,22 @@ typedef typename std::iterator_traits<string_type>::value_type char_type;
   index_type i, pidx;
   if((n < 0) || (k <= 0)) { return -1; }
   if(n <= 1) { if(n == 1) { U[0] = T[0]; } return n; }
-  try {
-    pidx = saisxx_private::suffixsort(T, A, 0, n, k, true);
-    if(0 <= pidx) {
+//   try {
+//     pidx = saisxx_private::suffixsort(T, A, 0, n, k, true);
+//     if(0 <= pidx) {
+//       U[0] = T[n - 1];
+//       for(i = 0; i < pidx; ++i) { U[i + 1] = (char_type)A[i]; }
+//       for(i += 1; i < n; ++i) { U[i] = (char_type)A[i]; }
+//       pidx += 1;
+//     }
+//   } catch(...) { pidx = -2; }
+  pidx = saisxx_private::suffixsort(T, A, 0, n, k, true);
+  if(0 <= pidx) {
       U[0] = T[n - 1];
       for(i = 0; i < pidx; ++i) { U[i + 1] = (char_type)A[i]; }
       for(i += 1; i < n; ++i) { U[i] = (char_type)A[i]; }
       pidx += 1;
-    }
-  } catch(...) { pidx = -2; }
+  }
   return pidx;
 }
 
